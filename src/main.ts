@@ -2,6 +2,14 @@ import { ElectricRat } from "./electric"
 
 document.addEventListener('DOMContentLoaded', ()=>{
     document.getElementById("ujform")?.addEventListener('submit', Uj)
+
+    document.getElementById("export")?.addEventListener('click', ()=>{
+        const exportarea = document.getElementById("exportarea")!
+        exportarea.textContent = 'name;atk;hp'
+        for(const item of adatok){
+            exportarea.textContent += item.toCSV() + "\n"
+        }
+    })
 })
 
 
@@ -28,6 +36,8 @@ function Uj(e:SubmitEvent){
 
 function loadData(){
     const lista = document.getElementById("kartyak")
+
+    lista!.innerHTML = ""
 
     for(const item of adatok){
         const div = document.createElement("div")
